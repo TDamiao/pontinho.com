@@ -98,6 +98,31 @@
   </script>
   
 
+<!--fav icon-->
+<script>
+  (function(){
+    // SVG do favicon (ícone simplificado de drone)
+    var svg = '<?xml version="1.0" encoding="UTF-8"?>' +
+              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
+              '<rect x="22" y="22" width="20" height="20" fill="#000"/>' +
+              '<circle cx="12" cy="12" r="6" fill="#000"/>' +
+              '<circle cx="52" cy="12" r="6" fill="#000"/>' +
+              '<circle cx="12" cy="52" r="6" fill="#000"/>' +
+              '<circle cx="52" cy="52" r="6" fill="#000"/>' +
+              '</svg>';
+    // Codifica o SVG para uso em data URL
+    var encodedSvg = encodeURIComponent(svg);
+    // Cria o elemento link para o favicon
+    var link = document.createElement("link");
+    link.rel = "icon";
+    link.href = "data:image/svg+xml;charset=UTF-8," + encodedSvg;
+    document.head.appendChild(link);
+  })();
+</script>
+
+
+
+
 </head>
 <body>
   <!-- Navegação -->
