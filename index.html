@@ -67,6 +67,26 @@
       }
     </style>
 
+<script>
+  (function(){
+    // SVG do favicon (ícone simplificado de carrinho de compras)
+    var svg = '<?xml version="1.0" encoding="UTF-8"?>' +
+              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
+                '<circle cx="20" cy="54" r="4" fill="#000"/>' +
+                '<circle cx="48" cy="54" r="4" fill="#000"/>' +
+                '<path d="M10,10 L18,10 L24,30 L50,30 L62,14" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
+              '</svg>';
+    // Codifica o SVG para ser usado em uma data URL
+    var encodedSvg = encodeURIComponent(svg);
+    // Cria o elemento <link> para o favicon
+    var link = document.createElement("link");
+    link.rel = "icon";
+    link.href = "data:image/svg+xml;charset=UTF-8," + encodedSvg;
+    document.head.appendChild(link);
+  })();
+</script>
+
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEXFT8N7ST"></script>
@@ -192,6 +212,7 @@
                 <i class="fas fa-helicopter-symbol fa-3x mb-3"></i>
                 <h5 class="card-title">Drones</h5>
                 <p class="card-text">Tecnologia e acessórios para drones de última geração.</p>
+                <a href="https://pontinho.com/drone" class="stretched-link"></a>
               </div>
             </div>
           </div>
@@ -202,6 +223,7 @@
                 <i class="fas fa-female fa-3x mb-3"></i>
                 <h5 class="card-title">Beleza Feminina</h5>
                 <p class="card-text">Produtos que realçam a beleza e o bem-estar.</p>
+                <a href="#" class="stretched-link"></a>
               </div>
             </div>
           </div>
@@ -212,6 +234,7 @@
                 <i class="fas fa-paw fa-3x mb-3"></i>
                 <h5 class="card-title">Pet</h5>
                 <p class="card-text">Tudo para cuidar e mimar os seus animais de estimação.</p>
+                <a href="#" class="stretched-link"></a>
               </div>
             </div>
           </div>
@@ -222,6 +245,7 @@
                 <i class="fas fa-hard-hat fa-3x mb-3"></i>
                 <h5 class="card-title">EPI</h5>
                 <p class="card-text">Equipamentos de proteção individual de alta qualidade.</p>
+                <a href="#" class="stretched-link"></a>
               </div>
             </div>
           </div>
