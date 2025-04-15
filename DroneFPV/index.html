@@ -39,13 +39,33 @@
       color: #fff;
       padding: 1rem 0;
     }
+    
+      /* Para Firefox CSS para esconder a barra de rolagem */
+  #slider {
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* Para IE e Edge */
+  }
+  /* Para Chrome, Safari e Opera */
+  #slider::-webkit-scrollbar {
+    display: none;
+  }
   </style>
+
+
+
+<style>
+
+</style>
+
+
+
 </head>
 <body>
   <!-- Navegação -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">Drone FPV</a>
+      <a class="navbar-brand" href="#">Drone FPV | </a>
+      <a class="navbar-brand" href="https://pontinho.com">Pontinho.com</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
               aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
         <span class="navbar-toggler-icon"></span>
@@ -62,7 +82,7 @@
             <a class="nav-link" href="#videos">Vídeos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#pecas">Peças</a>
+            <a class="nav-link" href="#pecas_modular">Peças</a>
           </li>
         </ul>
       </div>
@@ -80,180 +100,204 @@
 
 <!-- Seção Tutorial -->
 <section id="tutorial" class="container my-5">
-    <h2 class="section-title text-center">Playlist Tutorial Completo</h2>
+  <h2 class="section-title text-center">Playlist Tutorial Completo</h2>
+  
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Vídeo embed -->
+      <div class="ratio ratio-16x9 mb-4">
+        <iframe src="https://www.youtube.com/embed?listType=playlist&list=PLWs-2SBkINyzLTR9j8XDfEjINCb85R1GY" 
+                title="Tutorial Completo - Drone FPV" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen 
+                loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <p>
+        Aprenda a montar seu drone FPV com nosso tutorial passo a passo. Nesta playlist, abordamos desde a escolha das peças até a configuração final. Siga as orientações detalhadas e descubra como construir um drone robusto com alta performance utilizando os melhores componentes do mercado.
+      </p>
+      
+      <h4>Etapas do Tutorial</h4>
+      <ol>
+        <li>
+          <strong>Preparação e Planejamento:</strong>
+          <p>
+            Conheça os fundamentos do voo, entenda as necessidades do seu projeto e prepare as ferramentas e equipamentos essenciais. Uma boa preparação é a base para uma montagem segura e eficiente.
+          </p>
+        </li>
+        <li>
+          <strong>Seleção e Compra das Peças:</strong>
+          <p>
+            Descubra como escolher os componentes ideais, desde a controladora de voo até os motores brushless e hélices. <a href="#pecas" class="text-decoration-underline">Confira nossa lista completa de peças</a> com ofertas imperdíveis através dos nossos links de afiliados, garantindo o melhor custo-benefício.
+          </p>
+        </li>
+        <li>
+          <strong>Montagem e Configuração:</strong>
+          <p>
+            Siga nosso passo a passo detalhado para montar seu drone com precisão. Cada etapa foi cuidadosamente explicada para facilitar a configuração e otimizar a performance do seu equipamento.
+          </p>
+        </li>
+        <li>
+          <strong>Testes, Ajustes e Voo:</strong>
+          <p>
+            Realize testes rigorosos para calibrar seu drone, garantindo um voo estável e seguro. Nossos vídeos demonstram dicas práticas para ajustes finais que fazem toda a diferença.
+          </p>
+        </li>
+      </ol>
+      
+      <div class="alert alert-success" role="alert">
+        <strong>Dica de Ouro:</strong> Aproveite para adquirir os melhores componentes com preços exclusivos pelos nossos links de afiliados e garanta que seu drone tenha a performance que você sempre desejou!
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Seção de Vídeos Complementares - Slider em Uma Única Linha sem barra de rolagem -->
+<section id="videos" class="bg-light py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Vídeos Tutorial</h2>
     
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <!-- Vídeo embed -->
-        <div class="ratio ratio-16x9 mb-4">
-          <iframe src="https://www.youtube.com/embed?listType=playlist&list=PLWs-2SBkINyzLTR9j8XDfEjINCb85R1GY" 
-                  title="Playlist completa" frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen></iframe>
+    <!-- Wrapper do slider com botões de navegação -->
+    <div class="position-relative slider-wrapper">
+      <!-- Container dos cards em linha -->
+      <div id="slider" class="d-flex overflow-auto" style="gap: 1rem; scroll-snap-type: x mandatory; padding-bottom: 1rem;">
+        <!-- Card 1 -->
+        <div class="card shadow" style="min-width: 300px; scroll-snap-align: start;">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/tswJSQo0zrg?si=Kz62CDXwXl2nRTke" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Montagem do Frame</h5>
+            <p class="card-text">Vídeo detalhado mostrando cada etapa da montagem do seu drone.</p>
+            <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
+          </div>
         </div>
+        
+        <!-- Card 2 -->
+        <div class="card shadow" style="min-width: 300px; scroll-snap-align: start;">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/kyfZTBMusJA?si=4iSuSB6Ppdmmsx4Y" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Montagem Motores</h5>
+            <p class="card-text">Vídeo detalhado mostrando montagem dos motores e ESC.</p>
+            <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="card shadow" style="min-width: 300px; scroll-snap-align: start;">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/V3zOsB2pE7c?si=4UW_oYuNJWhUvvKK" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Montagem da Controladora</h5>
+            <p class="card-text">Vídeo detalhado mostrando a montagem da controladora de voo.</p>
+            <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="card shadow" style="min-width: 300px; scroll-snap-align: start;">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/PHRX_U4viRE?si=QDIZ_j3oKatQKXIi" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Montagem do VTX</h5>
+            <p class="card-text">Vídeo detalhado mostrando a montagem da câmera VTX do Drone.</p>
+            <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
+          </div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="card shadow" style="min-width: 300px; scroll-snap-align: start;">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/-lmfosEtTEE?si=PrhyBhG-SkvUkmcU" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Configuração dos Motores</h5>
+            <p class="card-text">
+              Vídeo detalhado mostrando a configuração. Veja mais em 
+              <a href="https://github.com/betaflight/betaflight-configurator/releases" target="_blank">Página beta Flight</a>.
+            </p>
+            <a href="https://github.com/betaflight/betaflight-configurator/releases/download/10.10.0/betaflight-configurator_10.10.0_win64-installer.exe" class="btn btn-primary">Fazer Download</a>
+          </div>
+        </div>
+        
       </div>
+      
+      <!-- Botões de Navegação -->
+      <button class="slider-prev btn btn-primary position-absolute" style="top: 50%; left: -1rem; transform: translateY(-50%); z-index: 1;">‹</button>
+      <button class="slider-next btn btn-primary position-absolute" style="top: 50%; right: -1rem; transform: translateY(-50%); z-index: 1;">›</button>
     </div>
     
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <p>Aprenda a montar seu drone FPV com nosso tutorial passo a passo, que abrange desde a escolha das peças até a configuração final. Com nossas orientações detalhadas, você criará um drone robusto e de alta performance, utilizando os melhores componentes do mercado.</p>
-        
-        <h4>Etapas do Tutorial</h4>
-        <ol>
-          <li>
-            <strong>Preparação e Planejamento:</strong> 
-            <p>Conheça os fundamentos do voo, entenda as necessidades do seu projeto e prepare as ferramentas e equipamentos essenciais. Uma boa preparação é a base para uma montagem segura e eficiente.</p>
-          </li>
-          <li>
-            <strong>Seleção e Compra das Peças:</strong> 
-            <p>Descubra como escolher os componentes ideais, desde a controladora de voo até os motores brushless e hélices. <a href="#pecas" class="text-decoration-underline">Confira nossa lista completa de peças</a> com ofertas imperdíveis através dos nossos links de afiliados, garantindo o melhor custo-benefício.</p>
-          </li>
-          <li>
-            <strong>Montagem e Configuração:</strong>
-            <p>Siga nosso passo a passo detalhado para montar seu drone com precisão. Cada etapa foi cuidadosamente explicada para facilitar a configuração e otimizar a performance do seu equipamento.</p>
-          </li>
-          <li>
-            <strong>Testes, Ajustes e Voo:</strong>
-            <p>Realize testes rigorosos para calibrar seu drone, garantindo um voo estável e seguro. Nossos vídeos demonstram dicas práticas para ajustes finais que fazem toda a diferença.</p>
-          </li>
-        </ol>
-        
-        <div class="alert alert-success" role="alert">
-          <strong>Dica de Ouro:</strong> Aproveite para adquirir os melhores componentes com preços exclusivos pelos nossos links de afiliados e garanta que seu drone tenha a performance que você sempre desejou!
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
 
 
-  <!-- Seção de Vídeos Complementares -->
-  <section id="videos" class="bg-light py-5">
-    <div class="container">
-      <h2 class="section-title">Vídeos Tutorial</h2>
-      <div class="row g-4">
-
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube.com/embed/tswJSQo0zrg?si=Kz62CDXwXl2nRTke" 
-                      title="YouTube video player" 
-                      frameborder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerpolicy="strict-origin-when-cross-origin" 
-                      allowfullscreen>
-              </iframe>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Montagem do Frame</h5>
-              <p class="card-text">Vídeo detalhado mostrando cada etapa da montagem do seu drone.</p>
-              <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
-            </div>
-          </div>
-        </div>
-        
-
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube.com/embed/kyfZTBMusJA?si=4iSuSB6Ppdmmsx4Y" 
-                      title="YouTube video player" 
-                      frameborder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerpolicy="strict-origin-when-cross-origin" 
-                      allowfullscreen>
-              </iframe>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Montagem Motores</h5>
-              <p class="card-text">Vídeo detalhado mostrando montagem dos motores e esc</p>
-              <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube.com/embed/V3zOsB2pE7c?si=4UW_oYuNJWhUvvKK" 
-                      title="YouTube video player" 
-                      frameborder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerpolicy="strict-origin-when-cross-origin" 
-                      allowfullscreen>
-              </iframe>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Montagem da controladora</h5>
-              <p class="card-text">Vídeo detalhado mostrando montagem da controladora de Voo</p>
-              <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube.com/embed/PHRX_U4viRE?si=QDIZ_j3oKatQKXIi" 
-                      title="YouTube video player" 
-                      frameborder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerpolicy="strict-origin-when-cross-origin" 
-                      allowfullscreen>
-              </iframe>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Montagem do VTX </h5>
-              <p class="card-text">Vídeo detalhado mostrando montagem da Camera VTX do Drone FPV</p>
-              <a href="#pecas" class="btn btn-primary">Comprar Peças</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube.com/embed/-lmfosEtTEE?si=PrhyBhG-SkvUkmcU" 
-                      title="YouTube video player" 
-                      frameborder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerpolicy="strict-origin-when-cross-origin" 
-                      allowfullscreen>
-              </iframe>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Configuração dos Motores </h5>
-              <p class="card-text">Vídeo detalhado mostrando a configuração  <a href="https://github.com/betaflight/betaflight-configurator/releases">Pagina beta Flight</a> </p>
-             
-              <a href="https://github.com/betaflight/betaflight-configurator/releases/download/10.10.0/betaflight-configurator_10.10.0_win64-installer.exe" class="btn btn-primary">Fazer Downalod</a>
-            </div>
-          </div>
-        </div>
 
 
 
-      </div>
-    </div>
-  </section>
+
 
 
  <!-- Seção de Peças -->
-<section id="pecas" class="container my-5">
+<section id="pecas_modular" class="container my-5">
     <h2 class="section-title text-center mb-4">Lista de Peças e Componentes</h2>
     <p class="text-center lead mb-5">Confira as melhores opções com qualidade comprovada e preços imbatíveis! Selecione a oferta que mais combina com você e monte seu drone com os melhores componentes do mercado.</p>
   
     <!-- Peças Essenciais -->
-    <h3 class="mb-3">Peças Essenciais</h3>
+    <h3 class="mb-3">Peças e  Componentes Modulares </h3>
     <div class="row">
       <!-- Card: Frame para Drone -->
-      <div class="col-md-6 col-lg-4 mb-4">
+      <div class="col-md-6 col-lg-3 mb-4">
         <div class="card h-100 shadow">
           <img src="https://via.placeholder.com/400x250?text=Frame+para+Drone" class="card-img-top" alt="Frame para Drone">
           <div class="card-body">
-            <h5 class="card-title">Frame para Drone</h5>
+            <h5 class="card-title">Rádio Controle</h5>
             <p class="card-text">
-              Descubra o frame ideal que une resistência e leveza para dar a base perfeita ao seu drone. 
-              Um design moderno que proporciona estabilidade e durabilidade.
+              Ideal tanto para iniciantes quanto para pilotos experientes que buscam performance e confiabilidade em cada voo.
             </p>
             <p class="mb-1"><strong>Faixa de Preço:</strong> R$150 - R$300</p>
           </div>
@@ -267,14 +311,13 @@
       </div>
   
       <!-- Card: Controladora de Voo -->
-      <div class="col-md-6 col-lg-4 mb-4">
+      <div class="col-md-6 col-lg-3 mb-4">
         <div class="card h-100 shadow">
           <img src="https://via.placeholder.com/400x250?text=Controladora+de+Voo" class="card-img-top" alt="Controladora de Voo">
           <div class="card-body">
-            <h5 class="card-title">Controladora de Voo</h5>
+            <h5 class="card-title">Bateria (Controle)</h5>
             <p class="card-text">
-              Garanta a precisão e a segurança dos seus voos com uma controladora de voo de alta tecnologia.
-              Essencial para a estabilidade e manuseio profissional do seu drone.
+              Invista em qualidade e prolongue suas sessões de voo – confira nossas opções com garantia de performance!
             </p>
             <p class="mb-1"><strong>Faixa de Preço:</strong> R$100 - R$250</p>
           </div>
@@ -288,13 +331,13 @@
       </div>
   
       <!-- Card: Motores Brushless -->
-      <div class="col-md-6 col-lg-4 mb-4">
+      <div class="col-md-6 col-lg-3 mb-4">
         <div class="card h-100 shadow">
           <img src="https://via.placeholder.com/400x250?text=Motores+Brushless" class="card-img-top" alt="Motores Brushless">
           <div class="card-body">
-            <h5 class="card-title">Motores Brushless</h5>
+            <h5 class="card-title">Óculos FPV</h5>
             <p class="card-text">
-              Potência e eficiência para voos intensos. Nossos motores brushless oferecem alto desempenho e durabilidade para manter seu drone no ar.
+              Experimente a sensação de voar com os melhores – adquira agora e transforme sua perspectiva!
             </p>
             <p class="mb-1"><strong>Faixa de Preço:</strong> R$80 - R$200 cada</p>
           </div>
@@ -308,7 +351,7 @@
       </div>
   
       <!-- Card: Hélices -->
-      <div class="col-md-6 col-lg-4 mb-4">
+      <div class="col-md-6 col-lg-3 mb-4">
         <div class="card h-100 shadow">
           <img src="https://via.placeholder.com/400x250?text=Hélices" class="card-img-top" alt="Hélices">
           <div class="card-body">
@@ -327,9 +370,17 @@
         </div>
       </div>
     </div>
-  
+</section>
+
+
+
+
+
+ <!-- Seção de Peças -->
+ <section id="pecas" class="container my-5">
+
     <!-- Componentes Adicionais -->
-    <h3 class="mt-5 mb-3">Componentes Adicionais</h3>
+    <h3 class="mt-5 mb-3">Peças Essencenciais </h3>
     <div class="row">
       <!-- Card: Transmissor e Receptor -->
       <div class="col-md-6 col-lg-4 mb-4">
@@ -390,29 +441,13 @@
           </div>
         </div>
       </div>
-  
-      <!-- Card: Carregador de Bateria -->
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 shadow">
-          <img src="https://via.placeholder.com/400x250?text=Carregador+de+Bateria" class="card-img-top" alt="Carregador de Bateria">
-          <div class="card-body">
-            <h5 class="card-title">Carregador de Bateria</h5>
-            <p class="card-text">
-              Mantenha suas baterias sempre prontas para a ação com um carregador rápido e seguro. Essencial para não interromper seus voos e garantir eficiência.
-            </p>
-            <p class="mb-1"><strong>Faixa de Preço:</strong> R$50 - R$150</p>
-          </div>
-          <div class="card-footer bg-white border-top-0">
-            <div class="d-grid gap-2">
-              <a href="https://pt.aliexpress.com/item/CarregadorAffiliateLink1" target="_blank" class="btn btn-primary">Comprar no AliExpress</a>
-              <a href="https://www.amazon.com/CarregadorAffiliateLink" target="_blank" class="btn btn-outline-primary">Comprar na Amazon</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
-  
+
+
+
+
+
 
   <!-- Rodapé -->
   <footer class="text-center">
@@ -423,5 +458,16 @@
 
   <!-- Bootstrap JS com Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script para rolagem suave dos cards -->
+<script>
+  const slider = document.getElementById("slider");
+  document.querySelector(".slider-prev").addEventListener("click", () => {
+    slider.scrollBy({ left: -300, behavior: "smooth" });
+  });
+  document.querySelector(".slider-next").addEventListener("click", () => {
+    slider.scrollBy({ left: 300, behavior: "smooth" });
+  });
+</script>
+
 </body>
 </html>
