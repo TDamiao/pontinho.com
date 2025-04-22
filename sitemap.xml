@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Página Inicial -->
   <url>
     <loc>https://pontinho.com/</loc>
     <lastmod>2025-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Página Drones (importante para que o Google encontre https://pontinho.com/drone) -->
   <url>
     <loc>https://pontinho.com/drone</loc>
     <lastmod>2025-04-15</lastmod>
