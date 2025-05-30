@@ -31,7 +31,7 @@ O projeto segue práticas ágeis em sprints de 2 semanas, com revisões de códi
 
 ## Estrutura do Repositório
 
-\`\`\`
+```
 /pontinho
 ├── public/              
 │   ├── index.html       # HTML principal (React/Vue) ou entry PHP
@@ -43,7 +43,7 @@ O projeto segue práticas ágeis em sprints de 2 semanas, com revisões de códi
 ├── src/server/          # Código PHP (caso reescreva o backend)
 ├── .env.local           # Variáveis de ambiente (não comitar)
 /README.md               # Este arquivo
-\`\`\`
+```
 
 ## Tecnologias e Bibliotecas
 
@@ -57,28 +57,27 @@ O projeto segue práticas ágeis em sprints de 2 semanas, com revisões de códi
 ## Setup & Instalação
 
 1. Clone o repositório:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/TDamiao/cupom-vota-ja.git
    cd cupom-vota-ja
-   \`\`\`
+   ```
 2. Instale dependências:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 3. Configure variáveis em \`.env.local\`:
-   \`\`\`dotenv
+   ```dotenv
    VITE_SUPABASE_URL=https://<seu-projeto>.supabase.co
    VITE_SUPABASE_ANON_KEY=<sua-chave-anonima>
-   \`\`\`
+   ```
 4. Inicie em modo desenvolvimento:
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
 5. Gere build para produção:
-   \`\`\`bash
+   ```bash
    npm run build
-   \`\`\`
-6. Faça deploy no Vercel ou copie \`build/\` para seu servidor.
+   ```
 
 ## Contribuindo
 
