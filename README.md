@@ -1,73 +1,96 @@
-# Welcome to your Lovable project
+# Pontinho.com
 
-## Project info
+![Placeholder for Screenshot](path/to/your/screenshot.png)
 
-**URL**: https://lovable.dev/projects/88a92698-4af7-4a26-ace7-7948a1636e71
+## Overview
 
-## How can I edit this code?
+Pontinho.com é uma plataforma colaborativa de cupons de desconto, inspirada em sites como Cuponomia, onde qualquer usuário pode submeter, votar e reportar cupons válidos sem necessidade de cadastro. O sistema promove automaticamente os melhores cupons através de votos positivos e desativa cupons com 20 votos negativos consecutivos.
 
-There are several ways of editing your application.
+## Como Funciona
 
-**Use Lovable**
+1. **Submissão de Cupons**  
+   Usuários submetem cupons (código, descrição, link, validade, regras) através do formulário.  
+2. **Votação Democrática**  
+   Cada cupom pode receber votos positivos ou negativos. Cupons com 20 votos negativos consecutivos são desativados automaticamente.  
+3. **Ranking Dinâmico**  
+   A página inicial exibe cupons ordenados pelo número de votos positivos, promovendo os melhores descontos.  
+4. **Busca Flexível**  
+   Pesquise cupons por nome de loja ou palavras-chave, gerando concorrência entre ofertas relacionadas a cada termo.  
+5. **Reports de Cupons Inválidos**  
+   Usuários podem reportar cupons expirados ou incorretos para revisão manual.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/88a92698-4af7-4a26-ace7-7948a1636e71) and start prompting.
+## Metodologia de Desenvolvimento
 
-Changes made via Lovable will be committed automatically to this repo.
+O projeto segue práticas ágeis em sprints de 2 semanas, com revisões de código e integração contínua. As principais etapas são:
 
-**Use your preferred IDE**
+- Planejamento de funcionalidades (MVP, SEO, usabilidade)  
+- Desenvolvimento incremental (front-end e back-end)  
+- Testes unitários e E2E  
+- Revisão de código via Pull Requests  
+- Deploy contínuo com pipelines automáticos  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Estrutura do Repositório
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+\`\`\`
+/pontinho
+├── public/              
+│   ├── index.html       # HTML principal (React/Vue) ou entry PHP
+│   └── assets/          # CSS, JS, imagens estáticas
+├── src/
+│   ├── components/      # Componentes de UI (React ou templates PHP)
+│   ├── integrations/    # Conexões (Supabase, APIs)
+│   └── lib/             # Serviços e helpers
+├── src/server/          # Código PHP (caso reescreva o backend)
+├── .env.local           # Variáveis de ambiente (não comitar)
+/README.md               # Este arquivo
+\`\`\`
 
-Follow these steps:
+## Tecnologias e Bibliotecas
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Frontend**: React, TypeScript, TailwindCSS (ou Bootstrap)  
+- **Backend**: Supabase (Postgres) ou PHP 8.x + MySQL  
+- **Cliente Supabase**: \`@supabase/supabase-js\`  
+- **Deploy**: Vercel (frontend estático) ou Hostinger (PHP/Apache)  
+- **CI/CD**: GitHub Actions  
+- **Testes**: Jest, Cypress (E2E) ou PHPUnit, Codeception (PHP)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Setup & Instalação
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. Clone o repositório:
+   \`\`\`bash
+   git clone https://github.com/TDamiao/cupom-vota-ja.git
+   cd cupom-vota-ja
+   \`\`\`
+2. Instale dependências:
+   \`\`\`bash
+   npm install
+   \`\`\`
+3. Configure variáveis em \`.env.local\`:
+   \`\`\`dotenv
+   VITE_SUPABASE_URL=https://<seu-projeto>.supabase.co
+   VITE_SUPABASE_ANON_KEY=<sua-chave-anonima>
+   \`\`\`
+4. Inicie em modo desenvolvimento:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+5. Gere build para produção:
+   \`\`\`bash
+   npm run build
+   \`\`\`
+6. Faça deploy no Vercel ou copie \`build/\` para seu servidor.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## Contribuindo
 
-**Edit a file directly in GitHub**
+1. Fork este repositório.  
+2. Crie uma branch feature/XYZ ou fix/ABC.  
+3. Faça suas alterações e adicione testes.  
+4. Abra um Pull Request descrevendo suas mudanças.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Doações
 
-**Use GitHub Codespaces**
+Se este projeto ajudou você, considere uma pequena doação via Mercado Pago:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+[Doar via Mercado Pago](https://link.mercadopago.com.br/pontinhopontocom)
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/88a92698-4af7-4a26-ace7-7948a1636e71) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
