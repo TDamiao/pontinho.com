@@ -1,6 +1,7 @@
 # Pontinho.com
 
-![Placeholder for Screenshot](path/to/your/screenshot.png)
+![Placeholder for Screenshot](https://raw.githubusercontent.com/TDamiao/pontinho.com/main/public/Pontinho.com.jpeg)
+
 
 ## Overview
 
