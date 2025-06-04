@@ -22,7 +22,7 @@ const ShareModal = ({ isOpen, onClose, coupon }: ShareModalProps) => {
 
   const shareText = `Cupom ${coupon.code} com ${coupon.discount} OFF no ${coupon.store}`;
   const shareUrls = getShareUrls(coupon.id, shareText);
-  const shareUrl = `${window.location.origin}/c/${coupon.id}`;
+  const shareUrl = `${window.location.origin}/cupom/${coupon.id}`;
 
   const copyToClipboard = async () => {
     try {
