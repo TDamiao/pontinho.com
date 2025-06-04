@@ -19,6 +19,8 @@ export type Database = {
           downvotes: number | null
           expiry_date: string
           id: string
+          image_hash: string | null
+          image_url: string | null
           is_active: boolean | null
           link: string
           store: string
@@ -34,6 +36,8 @@ export type Database = {
           downvotes?: number | null
           expiry_date: string
           id?: string
+          image_hash?: string | null
+          image_url?: string | null
           is_active?: boolean | null
           link: string
           store: string
@@ -49,6 +53,8 @@ export type Database = {
           downvotes?: number | null
           expiry_date?: string
           id?: string
+          image_hash?: string | null
+          image_url?: string | null
           is_active?: boolean | null
           link?: string
           store?: string

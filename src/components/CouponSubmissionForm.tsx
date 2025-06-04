@@ -1,12 +1,13 @@
-
 import React, { useState } from 'react';
-import { X, Gift, ExternalLink, Calendar, Tag, Store } from 'lucide-react';
+import { X, Gift, ExternalLink, Calendar, Tag, Store, Upload, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
+import { calculateImageHash, validateImageFile } from '@/utils/imageUtils';
 
 interface CouponSubmissionFormProps {
   onSubmit: (coupon: any) => void;
@@ -25,6 +26,9 @@ const CouponSubmissionForm = ({ onSubmit, onClose }: CouponSubmissionFormProps) 
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     let processedValue = value;
@@ -45,6 +49,68 @@ const CouponSubmissionForm = ({ onSubmit, onClose }: CouponSubmissionFormProps) 
     // Limpar erro quando usuário começa a digitar
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const validation = validateImageFile(file);
+    if (!validation.valid) {
+      toast.error(validation.error);
+      return;
+    }
+
+    setSelectedImage(file);
+    
+    // Criar preview
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImagePreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const uploadImage = async (file: File, couponId: string): Promise<{ url: string; hash: string } | null> => {
+    try {
+      const hash = await calculateImageHash(file);
+      
+      // Verificar se já existe imagem com mesmo hash para a loja
+      const { data: existingCoupon } = await supabase
+        .from('coupons')
+        .select('id')
+        .eq('store', formData.store)
+        .eq('image_hash', hash)
+        .single();
+
+      if (existingCoupon) {
+        toast.error(`Esta imagem já está cadastrada para a loja ${formData.store}`);
+        return null;
+      }
+
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${couponId}/image.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from('coupon-images')
+        .upload(fileName, file);
+
+      if (uploadError) {
+        console.error('Erro no upload:', uploadError);
+        toast.error('Erro ao fazer upload da imagem');
+        return null;
+      }
+
+      const { data } = supabase.storage
+        .from('coupon-images')
+        .getPublicUrl(fileName);
+
+      return { url: data.publicUrl, hash };
+    } catch (error) {
+      console.error('Erro ao processar imagem:', error);
+      toast.error('Erro ao processar imagem');
+      return null;
     }
   };
 
@@ -93,14 +159,77 @@ const CouponSubmissionForm = ({ onSubmit, onClose }: CouponSubmissionFormProps) 
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (validateForm()) {
-      onSubmit(formData);
-      toast.success('Cupom enviado com sucesso! Obrigado por contribuir com a comunidade.');
-    } else {
+    if (!validateForm()) {
       toast.error('Por favor, corrija os erros no formulário');
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      // Criar cupom primeiro para obter ID
+      const { data: coupon, error: couponError } = await supabase
+        .from('coupons')
+        .insert({
+          store: formData.store,
+          code: formData.code,
+          description: formData.description,
+          discount: formData.discount,
+          category: formData.category,
+          expiry_date: formData.expiryDate,
+          link: formData.link,
+          upvotes: 0,
+          downvotes: 0,
+          is_active: true
+        })
+        .select()
+        .single();
+
+      if (couponError) {
+        console.error('Erro ao criar cupom:', couponError);
+        toast.error('Erro ao criar cupom');
+        return;
+      }
+
+      let imageData = null;
+      if (selectedImage) {
+        imageData = await uploadImage(selectedImage, coupon.id);
+        if (!imageData) {
+          // Se houve erro no upload, deletar o cupom criado
+          await supabase.from('coupons').delete().eq('id', coupon.id);
+          return;
+        }
+
+        // Atualizar cupom com dados da imagem
+        const { error: updateError } = await supabase
+          .from('coupons')
+          .update({
+            image_url: imageData.url,
+            image_hash: imageData.hash
+          })
+          .eq('id', coupon.id);
+
+        if (updateError) {
+          console.error('Erro ao atualizar imagem do cupom:', updateError);
+        }
+      }
+
+      onSubmit({
+        ...formData,
+        id: coupon.id,
+        image_url: imageData?.url,
+        image_hash: imageData?.hash
+      });
+      
+      toast.success('Cupom criado com sucesso! Obrigado por contribuir com a comunidade.');
+    } catch (error) {
+      console.error('Erro ao criar cupom:', error);
+      toast.error('Erro ao criar cupom');
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -141,6 +270,33 @@ const CouponSubmissionForm = ({ onSubmit, onClose }: CouponSubmissionFormProps) 
                 <span>{errors.store && <span className="text-red-500">{errors.store}</span>}</span>
                 <span>{formData.store.length}/50</span>
               </div>
+            </div>
+
+            {/* Upload de Imagem */}
+            <div className="space-y-2">
+              <Label htmlFor="image" className="flex items-center space-x-2">
+                <ImageIcon className="w-4 h-4" />
+                <span>Imagem do Cupom (opcional - máx. 1MB)</span>
+              </Label>
+              <Input
+                id="image"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handleImageChange}
+                className="cursor-pointer"
+              />
+              {imagePreview && (
+                <div className="mt-2">
+                  <img 
+                    src={imagePreview} 
+                    alt="Preview" 
+                    className="w-32 h-32 object-cover rounded border"
+                  />
+                </div>
+              )}
+              <p className="text-xs text-gray-500">
+                Formatos aceitos: JPEG, PNG, WebP. Evitamos duplicatas por loja.
+              </p>
             </div>
 
             {/* Código e Desconto - Melhor alinhamento */}
@@ -251,15 +407,26 @@ const CouponSubmissionForm = ({ onSubmit, onClose }: CouponSubmissionFormProps) 
                 variant="outline"
                 onClick={onClose}
                 className="flex-1"
+                disabled={uploading}
               >
                 Cancelar
               </Button>
               <Button
                 type="submit"
                 className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                disabled={uploading}
               >
-                <Gift className="w-4 h-4 mr-2" />
-                Enviar Cupom
+                {uploading ? (
+                  <>
+                    <Upload className="w-4 h-4 mr-2 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Gift className="w-4 h-4 mr-2" />
+                    Enviar Cupom
+                  </>
+                )}
               </Button>
             </div>
           </form>

@@ -24,6 +24,8 @@ interface Coupon {
   link: string;
   created_at: string;
   is_active: boolean;
+  image_url?: string;
+  image_hash?: string;
 }
 
 const Index = () => {
@@ -254,38 +256,11 @@ const Index = () => {
     }
   };
 
-  // Submeter novo cupom
+  // Submeter novo cupom - atualizado para não duplicar criação
   const handleSubmitCoupon = async (newCouponData: any) => {
-    try {
-      const { error } = await supabase
-        .from('coupons')
-        .insert({
-          store: newCouponData.store,
-          code: newCouponData.code,
-          description: newCouponData.description,
-          discount: newCouponData.discount,
-          category: newCouponData.category,
-          expiry_date: newCouponData.expiryDate,
-          link: newCouponData.link,
-          upvotes: 0,
-          downvotes: 0,
-          is_active: true
-        });
-
-      if (error) {
-        console.error('Erro ao criar cupom:', error);
-        toast.error('Erro ao criar cupom');
-        return;
-      }
-
-      toast.success('Cupom criado com sucesso!');
-      setShowSubmissionForm(false);
-      fetchCoupons(); // Recarregar lista de cupons
-
-    } catch (error) {
-      console.error('Erro ao criar cupom:', error);
-      toast.error('Erro ao criar cupom');
-    }
+    // O cupom já foi criado no formulário, apenas atualizamos a lista
+    setShowSubmissionForm(false);
+    fetchCoupons(); // Recarregar lista de cupons
   };
 
   // Ordenar cupons por votos positivos (ranking democrático)
@@ -407,7 +382,8 @@ const Index = () => {
                   downvotes: coupon.downvotes,
                   link: coupon.link,
                   submittedAt: coupon.created_at,
-                  isActive: coupon.is_active
+                  isActive: coupon.is_active,
+                  image_url: coupon.image_url
                 }}
                 onVote={(couponId, type) => handleVote(couponId, type)}
                 onReport={() => handleReport(coupon.id)}
@@ -428,13 +404,21 @@ const Index = () => {
             Ajude outros consumidores encontrando e validando os melhores cupons. 
             Sua participação faz a diferença no sistema democrático do Pontinho.com!
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center space-x-4">
             <Button 
               onClick={() => setShowSubmissionForm(true)}
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3"
             >
               <Plus className="w-5 h-5 mr-2" />
               Adicionar Novo Cupom
+            </Button>
+            
+            <Button 
+              onClick={() => window.open('https://link.mercadopago.com.br/pontinhopontocom', '_blank')}
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-3"
+            >
+              <Heart className="w-5 h-5 mr-2" />
+              Apoiar o Projeto
             </Button>
           </div>
         </div>
