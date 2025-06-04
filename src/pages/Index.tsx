@@ -285,7 +285,7 @@ const Index = () => {
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-6xl font-bold mb-6 animate-fade-in">
-            🗳️ Pontinho.com
+            Pontinho.com
           </h1>
           <p className="text-2xl mb-4 opacity-90 animate-fade-in">
             A primeira plataforma de cupons 100% democrática do Brasil

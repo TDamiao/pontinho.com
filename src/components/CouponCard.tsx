@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ThumbsUp, ThumbsDown, Flag, ExternalLink, Calendar, Copy, Award } from 'lucide-react';
 import { Share2 } from 'lucide-react';
@@ -7,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import ShareModal from './ShareModal';
-import { shareViaWebAPI } from '@/utils/shareUtils';
+import StoreAvatar from './StoreAvatar';
 
 interface CouponProps {
   coupon: {
@@ -23,7 +24,6 @@ interface CouponProps {
     link: string;
     submittedAt: string;
     isActive: boolean;
-    image_url?: string;
   };
   onVote: (couponId: string, type: 'up' | 'down') => void;
   onReport?: () => void;
@@ -61,25 +61,18 @@ const CouponCard = ({ coupon, onVote, onReport, rank }: CouponProps) => {
     toast.success('Código copiado para a área de transferência!');
   };
 
-  const handleShare = async () => {
-    const shareData = {
-      title: `${coupon.store} | Pontinho.com`,
-      text: `Cupom ${coupon.code} com ${coupon.discount} OFF no ${coupon.store}`,
-      url: `${window.location.origin}/c/${coupon.id}?utm_source=share&utm_medium=web_share`
-    };
-
-    const shared = await shareViaWebAPI(shareData);
-    if (!shared) {
-      setShowShareModal(true);
-    }
+  const handleShare = () => {
+    setShowShareModal(true);
   };
 
   const formatDate = (dateString: string) => {
+    if (!dateString) return 'Sem data limite';
     const date = new Date(dateString);
     return date.toLocaleDateString('pt-BR');
   };
 
   const isExpiringSoon = () => {
+    if (!coupon.expiryDate) return false;
     const today = new Date();
     const expiry = new Date(coupon.expiryDate);
     const diffTime = expiry.getTime() - today.getTime();
@@ -126,7 +119,10 @@ const CouponCard = ({ coupon, onVote, onReport, rank }: CouponProps) => {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="flex-1">
-              <h3 className="font-bold text-lg text-gray-800 mb-1">{coupon.store}</h3>
+              <div className="flex items-center space-x-2 mb-1">
+                <StoreAvatar storeName={coupon.store} />
+                <h3 className="font-bold text-lg text-gray-800">{coupon.store}</h3>
+              </div>
               <p className="text-gray-600 text-sm line-clamp-2">{coupon.description}</p>
             </div>
             <Badge 
@@ -136,21 +132,6 @@ const CouponCard = ({ coupon, onVote, onReport, rank }: CouponProps) => {
               {coupon.discount}
             </Badge>
           </div>
-
-          {/* Imagem do cupom */}
-          {coupon.image_url && (
-            <div className="mt-3">
-              <img 
-                src={coupon.image_url} 
-                alt={`Cupom ${coupon.store}`}
-                className="w-full h-32 object-cover rounded border"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
-            </div>
-          )}
         </CardHeader>
 
         <CardContent className="space-y-4">
