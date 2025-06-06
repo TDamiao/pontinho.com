@@ -2,14 +2,13 @@
 import React from 'react';
 import { Github, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import PontinhoLogo from './PontinhoLogo';
 
 const Header = () => {
   return (
     <header className="absolute top-0 left-0 right-0 z-10 p-4">
       <div className="flex items-center justify-between">
-        {/* Logo do Pontinho */}
-        <PontinhoLogo size="md" showText={true} />
+        {/* Espaço vazio onde estava a logo */}
+        <div></div>
         
         {/* Botões do lado direito */}
         <div className="flex items-center space-x-3">
