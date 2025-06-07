@@ -101,13 +101,20 @@ const CouponCard = ({ coupon, onVote, onReport, rank }: CouponProps) => {
     }
   };
 
+  // Determinar a classe da borda baseada no rank
+  const getBorderClass = () => {
+    if (rank === 0) return 'ring-2 ring-blue-400'; // Cupom compartilhado - azul
+    if (rank <= 3) return 'ring-2 ring-yellow-400'; // Top 3 ranking - amarelo
+    return ''; // Sem borda especial
+  };
+
   return (
     <>
       <Card className={`relative transition-all duration-300 hover:shadow-lg hover:scale-105 ${
         !coupon.isActive ? 'opacity-50 grayscale' : ''
-      } ${rank <= 3 ? 'ring-2 ring-yellow-400' : ''}`}>
-        {/* Ranking Badge */}
-        {rank <= 3 && (
+      } ${getBorderClass()}`}>
+        {/* Ranking Badge - apenas para rank 1-3 */}
+        {rank >= 1 && rank <= 3 && (
           <div className="absolute -top-2 -right-2 z-10">
             <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
               {rank === 1 && <Award className="w-4 h-4" />}

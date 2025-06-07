@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { X, Share2, MessageCircle, Send, Twitter, Facebook, Copy } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -52,12 +53,12 @@ const ShareModal = ({ isOpen, onClose, coupon }: ShareModalProps) => {
         </CardHeader>
 
         <CardContent className="p-6">
-          <div className="mb-4">
+          <div className="mb-6">
             <p className="text-sm text-gray-600 mb-2">Compartilhe este cupom:</p>
             <p className="font-medium text-gray-800">{shareText}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 mb-6">
             <Button
               variant="outline"
               onClick={() => openShare(shareUrls.whatsapp)}
@@ -95,20 +96,14 @@ const ShareModal = ({ isOpen, onClose, coupon }: ShareModalProps) => {
             </Button>
           </div>
 
-          <div className="mt-4 pt-4 border-t">
-            <div className="mb-3">
-              <p className="text-xs text-gray-500 mb-1">URL para compartilhar:</p>
-              <p className="text-sm bg-gray-50 p-2 rounded border break-all">{shareUrl}</p>
-            </div>
-            <Button
-              variant="outline"
-              onClick={copyToClipboard}
-              className="w-full flex items-center justify-center space-x-2"
-            >
-              <Copy className="w-4 h-4" />
-              <span>Copiar Link</span>
-            </Button>
-          </div>
+          <Button
+            variant="outline"
+            onClick={copyToClipboard}
+            className="w-full flex items-center justify-center space-x-2"
+          >
+            <Copy className="w-4 h-4" />
+            <span>Copiar Link</span>
+          </Button>
         </CardContent>
       </Card>
     </div>
