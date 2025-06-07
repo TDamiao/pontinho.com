@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pontinho.com</title>
-    <meta name="description" content="Plataforma de cupons 100% democrática" />
-    <meta name="author" content="TDamião" />
-
-    <meta property="og:title" content="Pontinho.com" />
-    <meta property="og:description" content="Plataforma de cupons 100% democrática" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="#" />
-
-        <!-- Google tag (gtag.js) -->
+    <title>Pontinho.com - Cupons Democráticos</title>
+    <meta name="description" content="A primeira plataforma de cupons 100% democrática do Brasil. Vote nos melhores cupons e descubra ofertas validadas pela comunidade." />
+    <meta name="keywords" content="cupons, descontos, ofertas, democratico, brasil, comunidade" />
+    
+    <!-- Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+            <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEXFT8N7ST"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,7 +34,6 @@
       gtag('config', 'G-BEXFT8N7ST');
     </script>
   </head>
-
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

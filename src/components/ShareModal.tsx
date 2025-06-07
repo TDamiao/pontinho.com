@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { X, Share2, MessageCircle, Send, Twitter, Facebook, Copy } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,8 +20,8 @@ const ShareModal = ({ isOpen, onClose, coupon }: ShareModalProps) => {
   if (!isOpen) return null;
 
   const shareText = `Cupom ${coupon.code} com ${coupon.discount} OFF no ${coupon.store}`;
-  const shareUrls = getShareUrls(coupon.id, shareText);
-  const shareUrl = generateShareUrl(coupon.id, 'direct');
+  const shareUrls = getShareUrls(coupon, shareText);
+  const shareUrl = generateShareUrl(coupon, 'direct');
 
   const copyToClipboard = async () => {
     try {

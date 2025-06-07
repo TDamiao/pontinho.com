@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -10,6 +10,7 @@ import StatsSection from '@/components/StatsSection';
 import CallToActionSection from '@/components/CallToActionSection';
 import { useCouponData } from '@/hooks/useCouponData';
 import { useCouponVoting } from '@/hooks/useCouponVoting';
+import { extractCouponIdFromUrl } from '@/utils/seoUtils';
 
 interface Coupon {
   id: string;
@@ -28,6 +29,7 @@ interface Coupon {
 
 const CouponPage = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCoupons, setFilteredCoupons] = useState<any[]>([]);
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
