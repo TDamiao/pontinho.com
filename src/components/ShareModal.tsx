@@ -4,7 +4,7 @@ import { X, Share2, MessageCircle, Send, Twitter, Facebook, Copy } from 'lucide-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { getShareUrls } from '@/utils/shareUtils';
+import { getShareUrls, generateShareUrl } from '@/utils/shareUtils';
 
 interface ShareModalProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ const ShareModal = ({ isOpen, onClose, coupon }: ShareModalProps) => {
 
   const shareText = `Cupom ${coupon.code} com ${coupon.discount} OFF no ${coupon.store}`;
   const shareUrls = getShareUrls(coupon.id, shareText);
-  const shareUrl = `${window.location.origin}/cupom/${coupon.id}`;
+  const shareUrl = generateShareUrl(coupon.id, 'direct');
 
   const copyToClipboard = async () => {
     try {
@@ -97,6 +97,10 @@ const ShareModal = ({ isOpen, onClose, coupon }: ShareModalProps) => {
           </div>
 
           <div className="mt-4 pt-4 border-t">
+            <div className="mb-3">
+              <p className="text-xs text-gray-500 mb-1">URL para compartilhar:</p>
+              <p className="text-sm bg-gray-50 p-2 rounded border break-all">{shareUrl}</p>
+            </div>
             <Button
               variant="outline"
               onClick={copyToClipboard}
