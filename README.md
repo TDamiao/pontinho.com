@@ -55,31 +55,6 @@ O projeto segue práticas ágeis em sprints de 2 semanas, com revisões de códi
 - **CI/CD**: GitHub Actions  
 - **Testes**: Jest, Cypress (E2E) ou PHPUnit, Codeception (PHP)
 
-## Setup & Instalação
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/TDamiao/cupom-vota-ja.git
-   cd cupom-vota-ja
-   ```
-2. Instale dependências:
-   ```bash
-   npm install
-   ```
-3. Configure variáveis em \`.env.local\`:
-   ```dotenv
-   VITE_SUPABASE_URL=https://<seu-projeto>.supabase.co
-   VITE_SUPABASE_ANON_KEY=<sua-chave-anonima>
-   ```
-4. Inicie em modo desenvolvimento:
-   ```bash
-   npm run dev
-   ```
-5. Gere build para produção:
-   ```bash
-   npm run build
-   ```
-
 ## Contribuindo
 
 1. Fork este repositório.  
