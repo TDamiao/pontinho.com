@@ -9,6 +9,7 @@ import Header from '@/components/Header';
 import SearchBar from '@/components/SearchBar';
 import CouponCard from '@/components/CouponCard';
 import CouponSubmissionForm from '@/components/CouponSubmissionForm';
+import SEO from '@/components/SEO';
 
 interface Coupon {
   id: string;
@@ -33,6 +34,13 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
   const [sharedCoupon, setSharedCoupon] = useState<Coupon | null>(null);
+
+  const meta = {
+    title: 'Pontinho.com - Cupons Democráticos',
+    description: 'A primeira plataforma de cupons 100% democrática do Brasil. Vote nos melhores cupons e descubra ofertas validadas pela comunidade.',
+    keywords: 'cupons, descontos, ofertas, democratico, brasil, comunidade'
+  };
+  const canonicalUrl = typeof window !== 'undefined' ? `${window.location.origin}/` : '';
 
   useEffect(() => {
     fetchCoupons();
@@ -294,6 +302,12 @@ const Index = () => {
 
   return (
     <>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
+        canonical={canonicalUrl}
+      />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
         

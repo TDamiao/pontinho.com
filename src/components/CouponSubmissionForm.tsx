@@ -9,8 +9,19 @@ import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 
+interface NewCoupon {
+  id: string;
+  store: string;
+  code: string;
+  description: string;
+  discount: string;
+  category: string;
+  expiryDate: string | null;
+  link: string;
+}
+
 interface CouponSubmissionFormProps {
-  onSubmit: (coupon: any) => void;
+  onSubmit: (coupon: NewCoupon) => void;
   onClose: () => void;
 }
 
@@ -53,9 +64,9 @@ const CouponSubmissionForm = ({ onSubmit, onClose }: CouponSubmissionFormProps) 
   const validateDiscount = (value: string) => {
     // Aceita formatos: 20%, R$ 40,00, R$40,00, R$ 40.00, R$40.00, 40,00, 40.00
     const percentageRegex = /^\d+(\.\d+|,\d+)?%$/;
-    const currencyRegexWithComma = /^R\$\s?\d+(\,\d{2})?$/;
+    const currencyRegexWithComma = /^R\$\s?\d+(,\d{2})?$/;
     const currencyRegexWithDot = /^R\$\s?\d+(\.\d{2})?$/;
-    const numberRegexWithComma = /^\d+(\,\d{2})?$/;
+    const numberRegexWithComma = /^\d+(,\d{2})?$/;
     const numberRegexWithDot = /^\d+(\.\d{2})?$/;
     
     return percentageRegex.test(value) || 
