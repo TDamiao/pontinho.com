@@ -10,7 +10,8 @@ import StatsSection from '@/components/StatsSection';
 import CallToActionSection from '@/components/CallToActionSection';
 import { useCouponData } from '@/hooks/useCouponData';
 import { useCouponVoting } from '@/hooks/useCouponVoting';
-import { extractCouponIdFromUrl } from '@/utils/seoUtils';
+import { extractCouponIdFromUrl, generateMetaTags } from '@/utils/seoUtils';
+import SEO from '@/components/SEO';
 
 interface Coupon {
   id: string;
@@ -31,7 +32,7 @@ const CouponPage = () => {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredCoupons, setFilteredCoupons] = useState<any[]>([]);
+  const [filteredCoupons, setFilteredCoupons] = useState<Coupon[]>([]);
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
 
   const { coupon, allCoupons, loading, fetchAllCoupons, updateCoupon } = useCouponData(id);
@@ -97,8 +98,36 @@ const CouponPage = () => {
 
   const totalUpvotes = allCoupons.reduce((sum, c) => sum + c.upvotes, 0);
 
+  const canonicalUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}${location.pathname}`
+    : '';
+  const meta = generateMetaTags({
+    store: coupon.store,
+    code: coupon.code,
+    discount: coupon.discount,
+    description: coupon.description
+  });
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Offer',
+    name: coupon.code,
+    description: coupon.description,
+    url: canonicalUrl,
+    seller: {
+      '@type': 'Organization',
+      name: coupon.store
+    }
+  };
+
   return (
     <>
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        keywords={meta.keywords}
+        canonical={canonicalUrl}
+        jsonLd={jsonLd}
+      />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
         
